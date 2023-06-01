@@ -1,0 +1,9 @@
+li a {
+    color: green;
+    font-size: large;
+    
+}
+body {
+    background: rgb(255, 255, 255) url("images/background.jpg") no-repeat;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
