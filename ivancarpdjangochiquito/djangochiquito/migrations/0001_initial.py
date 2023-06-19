@@ -2,6 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
+from django.contrib.auth import get_user_model
 
 
 class Migration(migrations.Migration):
@@ -46,4 +47,18 @@ class Migration(migrations.Migration):
                 ('categoria', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='djangochiquito.categoria')),
             ],
         ),
+    ]
+def create_admin_user(apps, schema_editor):
+    User = get_user_model()
+    User.objects.create_superuser('admin', 'admin@example.com', 'password')
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        # Dependencias existentes de la migración
+    ]
+
+    operations = [
+        # Operaciones existentes de la migración
+        migrations.RunPython(create_admin_user),
     ]
