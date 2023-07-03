@@ -32,9 +32,8 @@ jobs:
     - name: Install pylint
       run: pip install pylint
 
-  - name: Run pylint
-    run: pylint djangochiquito/
-
+    - name: Run pylint
+      run: pylint djangochiquito/
 
     - name: Build and deploy
       run: |
