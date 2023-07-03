@@ -33,7 +33,3 @@ jobs:
       run: |
         cd ivancarpdjangochiquito
         python manage.py migrate
-
-
-    - name: Restart web server
-      run: systemctl restart nginx
