@@ -1,0 +1,37 @@
+name: Scheduled Build
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Ejecutar todos los días a las 12:00 AM UTC
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.6
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: python manage.py test
+
+    - name: Lint code
+      run: pylint djangochiquito/
+
+    - name: Build and deploy
+      run: |
+        python ivancarpdjangochiquito/manage.py collectstatic --noinput
+        python ivancarpdjangochiquito/manage.py migrate
+
+    - name: Restart web server
+      run: systemctl restart nginx
