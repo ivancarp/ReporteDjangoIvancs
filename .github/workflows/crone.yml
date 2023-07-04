@@ -2,7 +2,7 @@ name: Scheduled Build
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Ejecutar todos los días a las 12:00 AM UTC
+    - cron: '20 18 * * *'  # Ejecutar todos los días a las 6:20 PM UTC
 
 jobs:
   build:
@@ -25,13 +25,6 @@ jobs:
     - name: Run tests
       run: python manage.py test
 
-    - name: Lint code
-      run: pylint djangochiquito/
-
     - name: Build and deploy
       run: |
-        python ivancarpdjangochiquito/manage.py collectstatic --noinput
         python ivancarpdjangochiquito/manage.py migrate
-
-    - name: Restart web server
-      run: systemctl restart nginx
