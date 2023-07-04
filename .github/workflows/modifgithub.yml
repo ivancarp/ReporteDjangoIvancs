@@ -1,0 +1,25 @@
+name: Agregar archivo TXT
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Crear archivo TXT
+        run: echo "Contenido del archivo TXT" > archivo.txt
+
+      - name: Commit y push cambios
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add archivo.txt
+          git commit -m "Agregar archivo TXT"
+          git push
